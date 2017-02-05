@@ -19,6 +19,17 @@ __prepend () {
 
 __prepend /usr/local/sbin
 
+__pyenv_cmd=$( command -v pyenv || true )
+if [ -n "${__pyenv_cmd}" ] ; then
+  export PYENV_ROOT=${__pyenv_cmd%/bin/pyenv}/var/pyenv
+  eval "$(pyenv init -)"
+  if command -v pyenv-virtualenv-init > /dev/null; then
+    export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+    eval "$(pyenv virtualenv-init -)"
+  fi
+fi
+unset __pyenv_cmd
+
 export PATH
 export MANPATH
 
