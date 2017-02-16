@@ -30,6 +30,13 @@ if [ -n "${__pyenv_cmd}" ] ; then
 fi
 unset __pyenv_cmd
 
+__rbenv_cmd=$( command -v rbenv || true )
+if [ -n "${__rbenv_cmd}" ] ; then
+  export RBENV_ROOT=${__rbenv_cmd%/bin/rbenv}/var/rbenv
+  eval "$(rbenv init -)"
+fi
+unset __rbenv_cmd
+
 export PATH
 export MANPATH
 
