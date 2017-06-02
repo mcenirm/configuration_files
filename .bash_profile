@@ -43,4 +43,7 @@ export MANPATH
 export GREP_OPTIONS='--color=auto'
 export CLICOLOR=1
 
-test -f ~/.bashrc && source ~/.bashrc
+case "$-" in
+  *i*) test -f ~/.bashrc && source ~/.bashrc ;;
+  *) ;;
+esac
